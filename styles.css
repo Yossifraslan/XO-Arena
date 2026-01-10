@@ -31,6 +31,12 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    cursor: pointer;
+}
+
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
 }
 
 .cell:first-child,
