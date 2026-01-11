@@ -161,3 +161,11 @@ function aiMove() {
 
     swapTurns()
 }
+
+function getRandomCell() {
+    const availableCells = [...cellElements].filter(cell =>
+        !cell.classList.contains(X_CLASS) &&
+        !cell.classList.contains(CIRCLE_CLASS)
+    )
+    return availableCells[Math.floor(Math.random() * availableCells.length)]
+}
