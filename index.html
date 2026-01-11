@@ -8,22 +8,34 @@
     <title>XO Arena</title>
 </head>
 <body>
-    <div class="turn-indicator">
-        <div id="turnX" class="turn">X</div>
-        <div id="turnO" class="turn">O</div>
+    <div class="cover-page" id="coverPage">
+    <h1>XO Arena</h1>
+    <p>Select Game Mode</p>
+    <div class="mode-buttons">
+        <button id="multiplayerBtn">Multiplayer</button>
+        <button id="aiBtn">Play vs AI</button>
+    </div>
+</div>
+
+    <div class="game-container" style="display: none;">
+        <div class="turn-indicator">
+            <div id="turnX" class="turn">X</div>
+            <div id="turnO" class="turn">O</div>
+        </div>
+
+        <div class="board" id="board">
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+        </div>
     </div>
 
-    <div class="board" id="board">
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
-    </div>
     <div class="winning-message" id="winningMessage">
         <div data-winning-message-text></div>
         <button id="restartButton">Restart</button>
