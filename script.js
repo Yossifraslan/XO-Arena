@@ -14,6 +14,14 @@ const coverPage = document.getElementById('coverPage')
 const gameContainer = document.getElementById('gameContainer')
 const multiplayerBtn = document.getElementById('multiplayerBtn')
 const aiBtn = document.getElementById('aiBtn')
+const difficultyPage = document.getElementById('difficultyPage')
+const difficultyButtons = document.querySelectorAll('[data-difficulty]')
+const backToMenuBtn = document.getElementById('backToMenu')
+
+const scoreXEl = document.getElementById('scoreX')
+const scoreOEl = document.getElementById('scoreO')
+
+
 const cellElements = document.querySelectorAll('[data-cell]')
 const turnX = document.getElementById('turnX')
 const turnO = document.getElementById('turnO')
@@ -25,7 +33,10 @@ const winningMessageTextElement = document.querySelector('[data-winning-message-
 
 let circleTurn
 let gameMode = null
-let difficulty = 'easy'
+let difficulty = null
+let scoreX = 0
+let scoreO = 0
+
 
 
 multiplayerBtn.addEventListener('click', () => {
@@ -37,14 +48,31 @@ multiplayerBtn.addEventListener('click', () => {
 
 aiBtn.addEventListener('click', () => {
     gameMode = 'ai'
-    difficulty = 'easy'
     coverPage.style.display = 'none';
-    gameContainer.style.display = 'flex';
-    startGame()
+    difficultyPage.style.display = 'grid';
+})
+
+backToMenuBtn.addEventListener('click', () => {
+    gameContainer.style.display = 'none'
+    difficultyPage.style.display = 'none'
+    coverPage.style.display = 'grid'
+
+    gameMode = null
+    difficulty = null
+
+    winningMessageElement.classList.remove('show')
+})
+
+difficultyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        difficulty = btn.dataset.difficulty
+        difficultyPage.style.display = 'none'
+        gameContainer.style.display = 'flex'
+        startGame()
+    })
 })
 
 
-startGame()
 
 restartButton.addEventListener('click', startGame)
 
@@ -76,19 +104,17 @@ function handleClick(e){
         swapTurns()
         
     }
-    if (gameMode === 'ai' && circleTurn) {
-        setTimeout(aiMove, 400)
-    }
+    if (
+    gameMode === 'ai' &&
+    circleTurn &&
+    !winningMessageElement.classList.contains('show')
+) {
+    setTimeout(aiMove, 400)
 }
 
-function endGame(draw) {
-    if (draw) {
-        winningMessageTextElement.innerText = 'Draw!'
-    } else {
-        winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins! `
-    }
-    winningMessageElement.classList.add('show')
 }
+
+
 
 function isDraw() {
     return [...cellElements].every(cell => {
@@ -147,6 +173,8 @@ function aiMove() {
         cell = getBestMove()
     }
 
+    if (!cell) return
+
     placeMark(cell, CIRCLE_CLASS)
 
     if (checkWin(CIRCLE_CLASS)) {
@@ -198,7 +226,7 @@ function findWinningMove(playerClass) {
 
 function getBoardState() {
     return [...cellElements].map(cell =>
-        cell.classList.contains(X_CIRCLE) ? 'X' :
+        cell.classList.contains(X_CLASS) ? 'X' :
         cell.classList.contains(CIRCLE_CLASS) ? 'O' : null
     )
 }
@@ -216,7 +244,7 @@ function getBestMove() {
 
             if (score > bestScore) {
                 bestScore = score
-                move = cellElements[indexedDB]
+                move = cellElements[index]
             }
         }
     })
@@ -256,4 +284,22 @@ function checkWinnerForAI(board, player) {
     return WINNING_COMBINATIONS.some(combo =>
         combo.every(index => board[index] === player)
     )
+}
+
+function endGame(draw) {
+    if(!draw) {
+        if(circleTurn) {
+            scoreO++
+            scoreOEl.innerText = scoreO
+        } else {
+            scoreX++
+            scoreXEl.innerText = scoreX
+        }
+    }
+
+    winningMessageTextElement.innerText = draw
+        ? 'Draw!'
+        : `${circleTurn ? "O's" : "X's"} Wins!`
+
+    winningMessageElement.classList.add('show')
 }
