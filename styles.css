@@ -10,6 +10,62 @@
 
 body {
     margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover-page {
+    position: fixed;
+    inset: 0;
+    background-color: #111;
+    color: white;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.cover-page h1 {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.cover-page p {
+    font-size: 1.5rem;
+    margin: 10px 0 30px;
+}
+
+.cover-page .mode-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.cover-page .mode-buttons button {
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: crimson;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    transition: all 0.2 ease;
+}
+
+.cover-page .mode-buttons button:hover {
+    background-color: white;
+    color: crimson;
+    border: 1px solid crimson;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
 
 .turn-indicator {
@@ -38,13 +94,7 @@ body {
 }
 
 .board {
-    width: 100vw;
-    height: 100vh;
     display: grid;
-    justify-content: center;
-    align-content: center;
-    justify-items: center;
-    align-items: center;
     grid-template-columns: repeat(3, auto);
 }
 
