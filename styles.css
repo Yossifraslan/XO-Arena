@@ -68,6 +68,61 @@ body {
     gap: 24px;
 }
 
+.game-container,
+.difficulty-page {
+    display: none;
+}
+
+.difficulty-page {
+    position: fixed;
+    inset: 0;
+    background-color: #111;
+    color: white;
+    display: none;
+    place-items: center;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.difficulty-page h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.difficulty-buttons button {
+    font-size: 1.5rem;
+    padding: 10px 25px;
+    cursor: pointer;
+    background-color: crimson;
+    border: none;
+    color: white;
+    border-radius: 8px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 320px;
+    align-items: center;
+}
+
+.score {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#backToMenu {
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
 .turn-indicator {
     display: flex;
     justify-content: center;
