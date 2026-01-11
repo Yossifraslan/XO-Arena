@@ -195,3 +195,65 @@ function findWinningMove(playerClass) {
     }
     return null
 }
+
+function getBoardState() {
+    return [...cellElements].map(cell =>
+        cell.classList.contains(X_CIRCLE) ? 'X' :
+        cell.classList.contains(CIRCLE_CLASS) ? 'O' : null
+    )
+}
+
+function getBestMove() {
+    const boardState = getBoardState()
+    let bestScore = -Infinity
+    let move 
+
+    boardState.forEach((cell, index) => {
+        if (cell === null) {
+            boardState[index] = 'O'
+            let score = minimax(boardState, 0, false)
+            boardState[index] = null
+
+            if (score > bestScore) {
+                bestScore = score
+                move = cellElements[indexedDB]
+            }
+        }
+    })
+
+    return move
+}
+
+function minimax(board, depth, isMaximizing) {
+    if (checkWinnerForAI(board, 'O')) return 10 - depth
+    if (checkWinnerForAI(board, 'X')) return depth - 10
+    if (!board.includes(null)) return 0
+
+    if(isMaximizing) {
+        let best = -Infinity
+        board.forEach((cell, i) => {
+            if (cell === null) {
+                board[i] = 'O'
+                best = Math.max(best, minimax(board, depth + 1, false))
+                board[i] = null
+            }
+        })
+        return best
+    } else {
+        let best = Infinity
+        board.forEach((cell, i) => {
+            if(cell === null) {
+                board[i] = 'X'
+                best = Math.min(best, minimax(board, depth + 1, true))
+                board[i] = null
+            }
+        })
+        return best
+    }
+}
+
+function checkWinnerForAI(board, player) {
+    return WINNING_COMBINATIONS.some(combo =>
+        combo.every(index => board[index] === player)
+    )
+}
