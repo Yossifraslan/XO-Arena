@@ -17,7 +17,25 @@
     </div>
 </div>
 
-    <div class="game-container" id="gameContainer" style="display: none;">
+    <div class="difficulty-page" id="difficultyPage">
+        <h2>Select Difficulty</h2>
+        <div class="difficulty-buttons">
+            <button data-difficulty="easy">Easy</button>
+            <button data-difficulty="medium">Medium</button>
+            <button data-difficulty="hard">Hard</button>
+        </div>
+    </div>
+
+    <div class="game-container" id="gameContainer">
+
+        <div class="top-bar">
+            <button id="backToMenu"> Menu</button>
+            <div class="score">
+                X: <span id="scoreX">0</span>
+                O: <span id="scoreO">0</span>
+            </div>
+        </div>
+
         <div class="turn-indicator">
             <div id="turnX" class="turn">X</div>
             <div id="turnO" class="turn">O</div>
