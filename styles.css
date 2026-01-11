@@ -254,19 +254,37 @@ body {
     right: 0;
     bottom: 0;
     background-color: rgba(0 , 0 , 0, .9);
+    color: white;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-size: 5rem;
-    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}
+
+.winning-message div[data-winning-message-text] {
+    font-size: 3rem; 
+    margin-bottom: 30px;
+    word-wrap: break-word;
+}
+
+.end-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
 }
 
 .winning-message button {
-    font-size: 3rem;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    min-width: 120px;
+    border-radius: 8px;
     background-color: white;
     border: 1px solid black;
-    padding: .25em .5em;
+    color: black;
     cursor: pointer;
+    transition: all 0.2 ease;
 }
 
 .winning-message button:hover {
