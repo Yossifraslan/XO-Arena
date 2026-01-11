@@ -28,6 +28,7 @@ const turnO = document.getElementById('turnO')
 const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
+const menuButton = document.getElementById('menuButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 
 
@@ -61,6 +62,17 @@ backToMenuBtn.addEventListener('click', () => {
     difficulty = null
 
     winningMessageElement.classList.remove('show')
+})
+
+menuButton.addEventListener('click', () => {
+    winningMessageElement.classList.remove('show')
+
+    gameContainer.style.display = 'none'
+    difficultyPage.style.display = 'none'
+    coverPage.style.display = 'grid'
+
+    gameMode = null
+    difficulty = null
 })
 
 difficultyButtons.forEach(btn => {
