@@ -10,6 +10,10 @@ const WINNING_COMBINATIONS = [
     [0 , 4 , 8],
     [2 , 4 , 6]
 ]
+const coverPage = document.getElementById('coverPage')
+const gameContainer = document.getElementById('.game-container')
+const multiplayerBtn = document.getElementById('multiplayerBtn')
+const aiBtn = document.getElementById('aiBtn')
 const cellElements = document.querySelectorAll('[data-cell]')
 const turnX = document.getElementById('turnX')
 const turnO = document.getElementById('turnO')
@@ -18,6 +22,19 @@ const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 let circleTurn
+
+multiplayerBtn.addEventListener('click', () => {
+    coverPage.style.display = 'none';
+    gameContainer.style.display = 'flex';
+    startGame('multiplayer');
+})
+
+aiBtn.addEventListener('click', () => {
+    coverPage.style.display = 'none';
+    gameContainer.style.display = 'flex';
+    startGame('ai')
+})
+
 
 startGame()
 
