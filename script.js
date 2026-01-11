@@ -169,3 +169,29 @@ function getRandomCell() {
     )
     return availableCells[Math.floor(Math.random() * availableCells.length)]
 }
+
+function getMediumMove() {
+    return (
+        findWinningMove(CIRCLE_CLASS) || 
+        findWinningMove(X_CLASS) ||
+        getRandomCell()
+    )
+}
+
+function findWinningMove(playerClass) {
+    for (let combination of WINNING_COMBINATIONS) {
+        const cells = combination.map(index => cellElements[index])
+        const marks = cells.map(cell =>
+            cell.classList.contains(playerClass)
+        )
+
+        if(marks.filter(Boolean).length ===2) {
+            const emptyCell = cells.find(cell =>
+                !cell.classList.contains(X_CLASS) &&
+                !cell.classList.contains(CIRCLE_CLASS)
+            )
+            if(emptyCell) return emptyCell
+        }
+    }
+    return null
+}
