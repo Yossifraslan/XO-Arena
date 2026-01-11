@@ -11,7 +11,7 @@ const WINNING_COMBINATIONS = [
     [2 , 4 , 6]
 ]
 const coverPage = document.getElementById('coverPage')
-const gameContainer = document.getElementById('.game-container')
+const gameContainer = document.getElementById('gameContainer')
 const multiplayerBtn = document.getElementById('multiplayerBtn')
 const aiBtn = document.getElementById('aiBtn')
 const cellElements = document.querySelectorAll('[data-cell]')
@@ -21,18 +21,26 @@ const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
+
+
 let circleTurn
+let gameMode = null
+let difficulty = 'easy'
+
 
 multiplayerBtn.addEventListener('click', () => {
+    gameMode = 'multiplayer'
     coverPage.style.display = 'none';
     gameContainer.style.display = 'flex';
-    startGame('multiplayer');
+    startGame();
 })
 
 aiBtn.addEventListener('click', () => {
+    gameMode = 'ai'
+    difficulty = 'easy'
     coverPage.style.display = 'none';
     gameContainer.style.display = 'flex';
-    startGame('ai')
+    startGame()
 })
 
 
@@ -67,6 +75,9 @@ function handleClick(e){
     } else {
         swapTurns()
         
+    }
+    if (gameMode === 'ai' && circleTurn) {
+        setTimeout(aiMove, 400)
     }
 }
 
@@ -123,4 +134,30 @@ function updateTurnIndicator() {
     } else {
         turnX.classList.add('active')
     }
+}
+
+function aiMove() {
+    let cell
+    
+    if (difficulty === 'easy') {
+        cell = getRandomCell()
+    } else if (difficulty === 'medium') {
+        cell = getMediumMove()
+    } else {
+        cell = getBestMove()
+    }
+
+    placeMark(cell, CIRCLE_CLASS)
+
+    if (checkWin(CIRCLE_CLASS)) {
+        endGame(false)
+        return
+    }
+
+    if (isDraw()) {
+        endGame(true)
+        return
+    }
+
+    swapTurns()
 }
