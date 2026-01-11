@@ -11,6 +11,8 @@ const WINNING_COMBINATIONS = [
     [2 , 4 , 6]
 ]
 const cellElements = document.querySelectorAll('[data-cell]')
+const turnX = document.getElementById('turnX')
+const turnO = document.getElementById('turnO')
 const board = document.getElementById('board')
 const winningMessageElement = document.getElementById('winningMessage')
 const restartButton = document.getElementById('restartButton')
@@ -23,14 +25,18 @@ restartButton.addEventListener('click', startGame)
 
 function startGame() {
     circleTurn = false
+
     cellElements.forEach(cell => {
      cell.classList.remove(X_CLASS)   
      cell.classList.remove(CIRCLE_CLASS)
      cell.removeEventListener('click', handleClick)
      cell.addEventListener('click', handleClick, {once: true})
 })
-    setBoardHoverClass()
     winningMessageElement.classList.remove('show')
+
+    setBoardHoverClass()
+    updateTurnIndicator()
+    
 }
 
 function handleClick(e){
@@ -43,7 +49,7 @@ function handleClick(e){
         endGame(true)
     } else {
         swapTurns()
-        setBoardHoverClass()
+        
     }
 }
 
@@ -69,6 +75,8 @@ function placeMark(cell, currentClass) {
 
 function swapTurns() {
     circleTurn = !circleTurn
+    updateTurnIndicator()
+    setBoardHoverClass()
 }
 
 function setBoardHoverClass() {
@@ -87,4 +95,15 @@ function checkWin(currentClass) {
             return cellElements[index].classList.contains(currentClass)
         })
     })
+}
+
+function updateTurnIndicator() {
+    turnX.classList.remove('active')
+    turnO.classList.remove('active')
+
+    if (circleTurn) {
+        turnO.classList.add('active')
+    } else {
+        turnX.classList.add('active')
+    }
 }
