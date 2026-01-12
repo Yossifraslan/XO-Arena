@@ -89,28 +89,53 @@ body {
     margin-bottom: 30px;
 }
 
+button[data-difficulty] {
+    padding: 14px 32px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition:
+        transform 0.2 ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button[data-difficulty="easy"] {
+    background-color: #22c55e;
+}
+
+button[data-difficulty="medium"] {
+    background-color: #ea7908;
+}
+
+button[data-difficulty="hard"] {
+    background-color: #7f1d1d;
+}
+
+button[data-difficulty]:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+button[data-difficulty]:active {
+    transform: scale(0.97);
+}
 .difficulty-buttons {
     display: flex;
     gap: 20px;
     justify-content: center;
 }
 
-.difficulty-buttons button {
-    font-size: 1.5rem;
-    padding: 10px 25px;
-    cursor: pointer;
-    background-color: crimson;
-    border: none;
-    color: white;
-    border-radius: 8px;
-}
-
 .top-bar {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 320px;
+    max-width: 360px;
     align-items: center;
+    
 }
 
 .score {
