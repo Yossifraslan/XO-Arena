@@ -37,7 +37,7 @@ let gameMode = null
 let difficulty = null
 let scoreX = 0
 let scoreO = 0
-
+let aiThinking = false;
 
 
 multiplayerBtn.addEventListener('click', () => {
@@ -105,8 +105,10 @@ function startGame() {
 }
 
 function handleClick(e){
+    if (gameMode === 'ai' && circleTurn) return;
+
     const cell = e.target
-    const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
+    const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
     placeMark(cell, currentClass)
     if (checkWin(currentClass)) {
         endGame(false)
@@ -116,13 +118,14 @@ function handleClick(e){
         swapTurns()
         
     }
-    if (
-    gameMode === 'ai' &&
-    circleTurn &&
-    !winningMessageElement.classList.contains('show')
-) {
-    setTimeout(aiMove, 400)
-}
+    if (gameMode === 'ai' && circleTurn) {
+        board.style.pointerEvents = 'none';
+
+        setTimeout(() => {
+            aiMove();
+            board.style.pointerEvents = 'auto';
+        }, 400)
+    }
 
 }
 
@@ -175,7 +178,7 @@ function updateTurnIndicator() {
 }
 
 function aiMove() {
-    let cell
+    let cell;
     
     if (difficulty === 'easy') {
         cell = getRandomCell()
@@ -196,7 +199,7 @@ function aiMove() {
 
     if (isDraw()) {
         endGame(true)
-        return
+        return;
     }
 
     swapTurns()
