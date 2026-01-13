@@ -41,6 +41,7 @@ let aiThinking = false;
 
 
 multiplayerBtn.addEventListener('click', () => {
+    resetScores();
     gameMode = 'multiplayer'
     coverPage.style.display = 'none';
     gameContainer.style.display = 'flex';
@@ -48,6 +49,7 @@ multiplayerBtn.addEventListener('click', () => {
 })
 
 aiBtn.addEventListener('click', () => {
+    resetScores();
     gameMode = 'ai'
     coverPage.style.display = 'none';
     difficultyPage.style.display = 'grid';
@@ -77,6 +79,7 @@ menuButton.addEventListener('click', () => {
 
 difficultyButtons.forEach(btn => {
     btn.addEventListener('click', () => {
+        resetScores();
         difficulty = btn.dataset.difficulty
         difficultyPage.style.display = 'none'
         gameContainer.style.display = 'flex'
@@ -317,4 +320,15 @@ function endGame(draw) {
         : `${circleTurn ? "O's" : "X's"} Wins!`
 
     winningMessageElement.classList.add('show')
+}
+
+
+function resetScores() {
+    // RESET the GLOBAL score variables
+    scoreX = 0
+    scoreO = 0
+
+    // UPDATE the score display on UI
+    scoreXEl.textContent = scoreX
+    scoreOEl.textContent = scoreO
 }
