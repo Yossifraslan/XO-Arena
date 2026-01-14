@@ -2,21 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Responsive meta tag ensures proper scaling on all devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <!-- Link to CSS file -->
     <script src="script.js" defer></script>
+    <!-- Link to JS file, defer to run after HTML loads -->
     <title>XO Arena</title>
   </head>
   <body>
+    <!-- Cover page for selecting game mode -->
     <div class="cover-page" id="coverPage">
       <h1>XO Arena</h1>
       <p>Select Game Mode</p>
       <div class="mode-buttons">
         <button id="multiplayerBtn">Multiplayer</button>
+        <!-- Multiplayer button -->
         <button id="aiBtn">Play vs AI</button>
+        <!-- AI button -->
       </div>
     </div>
 
+    <!-- Difficulty selection page for AI mode -->
     <div class="difficulty-page" id="difficultyPage">
       <h2>Select Difficulty</h2>
       <div class="difficulty-buttons">
@@ -26,19 +33,26 @@
       </div>
     </div>
 
+    <!-- Main game container-->
     <div class="game-container" id="gameContainer">
+      <!-- Top bar with back menu and score display -->
       <div class="top-bar">
         <button id="backToMenu">Menu</button>
         <div class="score">
-          X: <span id="scoreX">0</span> O: <span id="scoreO">0</span>
+          X: <span id="scoreX">0</span>
+          <!-- X player score-->
+          O: <span id="scoreO">0</span>
+          <!-- O player score -->
         </div>
       </div>
 
+      <!-- Turn indicator for X and O -->
       <div class="turn-indicator">
         <div id="turnX" class="turn">X</div>
         <div id="turnO" class="turn">O</div>
       </div>
 
+      <!-- Tic Tac Toe board -->
       <div class="board" id="board">
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
@@ -52,8 +66,10 @@
       </div>
     </div>
 
+    <!-- Winning message overlay -->
     <div class="winning-message" id="winningMessage">
       <div data-winning-message-text></div>
+      <!-- Text of winner or draw -->
       <div class="end-buttons">
         <button id="restartButton">Restart</button>
         <button id="menuButton">Menu</button>
