@@ -1,22 +1,26 @@
+/* Reset box-sizing for consisten sizing */
 *,
 *::after,
 *::before {
   box-sizing: border-box;
 }
 
+/* Root variables for board size and mark size */
 :root {
-  --cell-size: min(26vw, 100px);
-  --mark-size: calc(var(--cell-size) * 0.85);
+  --cell-size: min(26vw, 100px); /* 26% of viewport width or max 100px */
+  --mark-size: calc(var(--cell-size) * 0.85); /* size of X and O marks */
 }
 
+/* Body styling for centering game */
 body {
   margin: 0;
-  height: 100svh;
+  height: 100svh; /* full viewport height including mobile */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Cover page styling */
 .cover-page {
   position: fixed;
   inset: 0;
@@ -28,12 +32,14 @@ body {
   font-family: sans-serif;
 }
 
+/* Cover page title and description */
 .cover-page h1 {
   font-size: 4rem;
   margin: 0;
   text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.7);
 }
 
+/* Buttons in cover page */
 .cover-page p {
   font-size: 3rem;
   font-weight: 700;
@@ -65,6 +71,7 @@ body {
   box-shadow: 0 0 12px crimson;
 }
 
+/* Game container styling */
 .game-container {
   display: flex;
   flex-direction: column;
@@ -77,6 +84,7 @@ body {
   display: none;
 }
 
+/* Difficulty page styling */
 .difficulty-page {
   position: fixed;
   inset: 0;
@@ -132,6 +140,7 @@ button[data-difficulty]:active {
   justify-content: center;
 }
 
+/* Top bar styling */
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -158,15 +167,16 @@ button[data-difficulty]:active {
 }
 
 .score span {
-  color: #22c55e;
+  color: #22c55e; /* X score green */
   font-weight: bold;
   text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
 }
 
 .score span + span {
-  color: #f87171;
+  color: #f87171; /* O score red */
 }
 
+/* Back button */
 #backToMenu {
   padding: 8px 16px;
   background-color: crimson;
@@ -184,6 +194,7 @@ button[data-difficulty]:active {
   border: 1px solid crimson;
 }
 
+/* Turn indicator styling */
 .turn-indicator {
   display: flex;
   justify-content: space-between;
@@ -217,6 +228,7 @@ button[data-difficulty]:active {
   transform: scale(1.05);
 }
 
+/* Board styling */
 .board {
   display: grid;
   grid-template-columns: repeat(3, auto);
@@ -270,6 +282,7 @@ button[data-difficulty]:active {
   background-color: lightgrey;
 }
 
+/* X marking styling*/
 .cell.x::before,
 .cell.x::after,
 .board.x .cell:not(.x):not(.circle):hover::before,
@@ -290,6 +303,7 @@ button[data-difficulty]:active {
   transform: rotate(-45deg);
 }
 
+/* O mark styling */
 .cell.circle::before,
 .cell.circle::after,
 .board.circle .cell:not(.x):not(.circle):hover::before,
@@ -312,6 +326,7 @@ button[data-difficulty]:active {
   background-color: white;
 }
 
+/* Winning message overlay */
 .winning-message {
   display: none;
   position: fixed;
@@ -364,6 +379,7 @@ button[data-difficulty]:active {
   display: flex;
 }
 
+/* Fallback for browsers not supporting 100svh */
 @supports not (height: 100svh) {
   body {
     min-height: 100vh;
