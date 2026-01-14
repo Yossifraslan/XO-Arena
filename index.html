@@ -1,67 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
     <title>XO Arena</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="cover-page" id="coverPage">
-    <h1>XO Arena</h1>
-    <p>Select Game Mode</p>
-    <div class="mode-buttons">
+      <h1>XO Arena</h1>
+      <p>Select Game Mode</p>
+      <div class="mode-buttons">
         <button id="multiplayerBtn">Multiplayer</button>
         <button id="aiBtn">Play vs AI</button>
+      </div>
     </div>
-</div>
 
     <div class="difficulty-page" id="difficultyPage">
-        <h2>Select Difficulty</h2>
-        <div class="difficulty-buttons">
-            <button data-difficulty="easy">Easy</button>
-            <button data-difficulty="medium">Medium</button>
-            <button data-difficulty="hard">Hard</button>
-        </div>
+      <h2>Select Difficulty</h2>
+      <div class="difficulty-buttons">
+        <button data-difficulty="easy">Easy</button>
+        <button data-difficulty="medium">Medium</button>
+        <button data-difficulty="hard">Hard</button>
+      </div>
     </div>
 
     <div class="game-container" id="gameContainer">
-
-        <div class="top-bar">
-            <button id="backToMenu"> Menu</button>
-            <div class="score">
-                X: <span id="scoreX">0</span>
-                O: <span id="scoreO">0</span>
-            </div>
+      <div class="top-bar">
+        <button id="backToMenu">Menu</button>
+        <div class="score">
+          X: <span id="scoreX">0</span> O: <span id="scoreO">0</span>
         </div>
+      </div>
 
-        <div class="turn-indicator">
-            <div id="turnX" class="turn">X</div>
-            <div id="turnO" class="turn">O</div>
-        </div>
+      <div class="turn-indicator">
+        <div id="turnX" class="turn">X</div>
+        <div id="turnO" class="turn">O</div>
+      </div>
 
-        <div class="board" id="board">
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-        </div>
+      <div class="board" id="board">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+      </div>
     </div>
 
     <div class="winning-message" id="winningMessage">
-    <div data-winning-message-text></div>
-    <div class="end-buttons">
+      <div data-winning-message-text></div>
+      <div class="end-buttons">
         <button id="restartButton">Restart</button>
         <button id="menuButton">Menu</button>
+      </div>
     </div>
-</div>
-
-
-</body>
+  </body>
 </html>
